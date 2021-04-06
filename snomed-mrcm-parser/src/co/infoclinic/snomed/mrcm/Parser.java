@@ -39,7 +39,7 @@ import co.infoclinic.snomed.mrcm.parser.generated.ExpressionTemplateParser;
 
 public class Parser {
 	
-	private static final Logger logger = LoggerFactory.getLogger(Parser.class);
+	//private static final Logger logger = LoggerFactory.getLogger(Parser.class);
 	
 	static int index = 0;
 	static List<String> mrcmFocusConceptID = new ArrayList<String>();
@@ -47,8 +47,17 @@ public class Parser {
 	public static void main(String[] args) {
 		
 		List<String> mrcmList = new ArrayList<String>(); 
+		String fileName = "";
 		
-		String fileName = "resources/der2_sssssssRefset_MRCMDomainSnapshot_INT_20210131.txt";
+		if (args.length == 1) {
+			fileName = args[0];
+		} else {
+			System.out.println("snomed-mrcm-parser v1.0");
+			System.out.println("Usage : java -jar snomed-mrcm-parser.jar <mrcm txt file>");
+			return;
+		}
+
+		//String fileName = "resources/der2_sssssssRefset_MRCMDomainSnapshot_INT_20210131.txt";
         //File file = new File(fileName);
         //FileInputStream fis = null;
         
@@ -243,7 +252,7 @@ public class Parser {
 			@Override
 			public void reportError(org.antlr.v4.runtime.Parser recognizer, RecognitionException e) {
 				// TODO Auto-generated method stub
-				logger.info("Parsing error.", e);
+				//logger.info("Parsing error.", e);
 				exceptions.add(e);
 			}
 		};
